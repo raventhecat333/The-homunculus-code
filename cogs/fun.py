@@ -31,7 +31,7 @@ class Fun(commands.Cog, name="fun"):
     """
     Why 1 and 86400?
     -> Because the user should be able to use the command *once* every *86400* seconds
-    
+
     Why BucketType.user?
     -> Because the cool down only affects the current user, if you want other types of cool downs, here are they:
     - BucketType.default for a global basis.
@@ -63,6 +63,27 @@ class Fun(commands.Cog, name="fun"):
                     # We need to reset the cool down since the user didn't got his daily fact.
                     self.dailyfact.reset_cooldown(context)
 
+
+
+    @commands.command(name="emoji")
+    async def emoji(self, context, emoji:discord.Emoji):
+        embed = discord.Embed(
+            title="Emoji Info",
+            description=f"{emoji.name}",
+            color=0xE02B2B
+        )
+        embed.set_image(url=emoji.url)
+        embed.add_field(
+            name="Emoji ID",
+            value=f"{emoji.id}",
+            inline=True
+        )
+        embed.add_field(
+            name="This Emoji is from:",
+            value=f"{emoji.guild}",
+            inline=True
+        )
+        await context.send(embed=embed)
     @commands.command(name="rps")
     async def rock_paper_scissors(self, context):
         choices = {

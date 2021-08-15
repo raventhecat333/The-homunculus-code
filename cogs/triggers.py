@@ -22,8 +22,8 @@ class triggers(commands.Cog, name="triggers"):
     # Here you can just add your own commands, you'll always need to provide "self" as first parameter.
     @commands.Cog.listener()
     async def on_message(self, message):
-    if message.content == "hello":
-        await message.channel.send(f"hello {message.author}")
+        if message.content == "hello":
+            await message.channel.send(f"hello {message.author}")
 
 # And then we finally add the cog to the bot so that it can load, unload, reload and use it's content.
 def setup(bot):
