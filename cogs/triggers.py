@@ -15,22 +15,16 @@ else:
 
 
 # Here we name the cog and create a new class for the cog.
-class Template(commands.Cog, name="template"):
+class triggers(commands.Cog, name="triggers"):
     def __init__(self, bot):
         self.bot = bot
 
     # Here you can just add your own commands, you'll always need to provide "self" as first parameter.
-    @commands.command(name="testcommand")
-    async def testcommand(self, context):
-        """
-        This is a testing command that does nothing.
-        """
-        # Do your stuff here
-
-        # Don't forget to remove "pass", that's just because there's no content in the method.
-        pass
-
+    @commands.Cog.listener()
+    async def on_message(self, message):
+    if message.content == "hello":
+        await message.channel.send(f"hello {message.author}")
 
 # And then we finally add the cog to the bot so that it can load, unload, reload and use it's content.
 def setup(bot):
-    bot.add_cog(Template(bot))
+    bot.add_cog(triggers(bot))
