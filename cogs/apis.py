@@ -7,12 +7,6 @@ import asyncio
 
 from discord.ext import commands
 
-# Only if you want to use variables that are in the config.json file.
-if not os.path.isfile("config.json"):
-    sys.exit("'config.json' not found! Please add it and try again.")
-else:
-    with open("config.json") as file:
-        config = json.load(file)
 
 
 # Here we name the cog and create a new class for the cog.
