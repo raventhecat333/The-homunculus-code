@@ -10,7 +10,7 @@ from discord.ext import commands
 
 
 # Here we name the cog and create a new class for the cog.
-class Template(commands.Cog, name="template"):
+class apis(commands.Cog, name="apis"):
     def __init__(self, bot):
         self.bot = bot
 
@@ -46,4 +46,4 @@ class Template(commands.Cog, name="template"):
 
 # And then we finally add the cog to the bot so that it can load, unload, reload and use it's content.
 def setup(bot):
-    bot.add_cog(Template(bot))
+    bot.add_cog(apis(bot))
