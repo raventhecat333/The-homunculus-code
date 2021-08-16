@@ -99,8 +99,8 @@ class apis(commands.Cog, name="apis"):
             embed.set_image(url=response['url'])
             await context.send(embed=embed)
 
-    @commands.command(name="boot")
-    async def boot(self, context, User:discord.User):
+    @commands.command(name="kick")
+    async def kick(self, context, User:discord.User):
         """
         idk
         """
