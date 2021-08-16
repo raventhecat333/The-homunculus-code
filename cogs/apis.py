@@ -61,6 +61,18 @@ class apis(commands.Cog, name="apis"):
             )
             await context.send(embed=embed)
 
+    @commands.command(name="QRify")
+    async def QRify(self, context, args):
+        """
+        create a qr code based on the string given
+        """
+        embed = discord.Embed(
+        title="QR code for",
+            description=f"{args}",
+            color=0x42F56C
+        )
+        embed.set_image(url=f"https://www.qrtag.net/api/qr_12.png?url={args}")
+        await context.send(embed=embed)
 
 # And then we finally add the cog to the bot so that it can load, unload, reload and use it's content.
 def setup(bot):
