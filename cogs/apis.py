@@ -74,6 +74,27 @@ class apis(commands.Cog, name="apis"):
         embed.set_image(url=f"https://www.qrtag.net/api/qr_12.png?url={args}")
         await context.send(embed=embed)
 
+    @commands.command(name="waifu")
+    async def waifu(self, context, args):
+        """
+        Get a random image of a waifu
+        """
+        url = f"https://api.waifu.pics/sfw/{args}"
+        # Async HTTP request
+        async with aiohttp.ClientSession() as session:
+            raw_response = await session.get(url)
+            response = await raw_response.text()
+            response = json.loads(response)
+            embed = discord.Embed(
+                title="",
+                description="",
+                color=0x42F56C
+            )
+            embed.set_image(
+            url=url
+            )
+            await context.send(embed=embed)
+
 # And then we finally add the cog to the bot so that it can load, unload, reload and use it's content.
 def setup(bot):
     bot.add_cog(apis(bot))
