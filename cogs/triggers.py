@@ -23,7 +23,7 @@ class triggers(commands.Cog, name="triggers"):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.content == "hello":
-            await message.channel.send(f"hello {message.author}")
+            await message.channel.send(f"hello @{message.author}")
 
 # And then we finally add the cog to the bot so that it can load, unload, reload and use it's content.
 def setup(bot):
