@@ -57,14 +57,14 @@ async def on_ready():
     print(f"Python version: {platform.python_version()}")
     print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
     print("-------------------")
-    status_task.start()
+    #status_task.start()
 
 
 # Setup the game status task of the bot
-@tasks.loop(minutes=1.0)
-async def status_task():
-    statuses = ["with you!", "with Envy!", f"{config['bot_prefix']}help", "with humans!"]
-    await bot.change_presence(activity=discord.Game(random.choice(statuses)))
+#@tasks.loop(minutes=1.0)
+#async def status_task():
+#    global status
+#    await bot.change_presence(activity=discord.Game(status))
 
 
 # Removes the default help command of discord.py to be able to create our custom help command.
