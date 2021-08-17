@@ -175,6 +175,22 @@ class owner(commands.Cog, name="owner"):
             )
             await context.send(embed=embed)
 
+    @commands.command(name="status")
+    async def status(self, context, *, status = None):
+        if context.message.author.id in config["owners"]:
+            if status:
+                game = discord.Game(status)
+                await self.bot.change_presence(activity = game)
+            else:
+                await self.bot.change_presence(activity = None)
+                await context.send(f"changed status to {game}")
+        else:
+            embed = discord.Embed(
+                title="Error!",
+                description="You don't have the permission to use this command.",
+                color=0xE02B2B
+            )
+            await context.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(owner(bot))

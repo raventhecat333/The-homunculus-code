@@ -41,7 +41,7 @@ class general(commands.Cog, name="general"):
         )
         embed.add_field(
             name="Owner:",
-            value="Krypton#2188",
+            value="Envy#8394",
             inline=True
         )
         embed.add_field(
@@ -54,6 +54,11 @@ class general(commands.Cog, name="general"):
             value=f"{config['bot_prefix']}",
             inline=False
         )
+        embed.add_field(
+            name="Stand Ability",
+            value="The Homunculus Requiem is capable of using the abilities of other stands"
+        )
+        embed.set_image(url="")
         embed.set_footer(
             text=f"Requested by {context.message.author}"
         )
