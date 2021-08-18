@@ -11,6 +11,7 @@ import json
 import os
 import random
 import sys
+from gtts import gTTS
 
 import aiohttp
 import discord
@@ -39,7 +40,13 @@ class Fun(commands.Cog, name="fun"):
     - BucketType.server for a per-server basis.
     - BucketType.channel for a per-channel basis.
     """
-
+    @commands.command(name="tts")
+    async def tts(self, context, args):
+        mytext = f"{args}"
+        language = 'en'
+        myobj = gTTS(text=mytext, lang=language, slow=False)
+        myobj.save("output.mp3")
+        await context.send(file=discord.File('output.mp3'))
     @commands.command(name="dailyfact")
     @commands.cooldown(1, 86400, BucketType.user)
     async def dailyfact(self, context):
