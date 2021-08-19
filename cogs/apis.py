@@ -67,8 +67,8 @@ class apis(commands.Cog, name="apis"):
         create a qr code based on the string given
         """
         embed = discord.Embed(
-        title="QR code for",
-            description=f"{args}",
+        title=f"QR code for {args}",
+            description="",
             color=0x42F56C
         )
         embed.set_image(url=f"https://www.qrtag.net/api/qr_12.png?url={args}")
@@ -77,9 +77,9 @@ class apis(commands.Cog, name="apis"):
     @commands.command(name="waifu")
     async def waifu(self, context, args):
         """
-        Get a random image of a waifu
+        Get anime images, idk
         """
-        if args != "categories":
+        if args != "help":
             url = f"https://api.waifu.pics/sfw/{args}"
             # Async HTTP request
             async with aiohttp.ClientSession() as session:
@@ -102,7 +102,7 @@ class apis(commands.Cog, name="apis"):
                 response = json.loads(response)
                 embed = discord.Embed(
                     title="Valid categories are:",
-                    description=f"response['sfw']",
+                    description=f"{response['sfw']}",
                     color=0x42F56C
                 )
                 await context.send(embed=embed)
