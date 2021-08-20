@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-
+import discord
 from discord.ext import commands
 
 # Only if you want to use variables that are in the config.json file.

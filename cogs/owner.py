@@ -1,17 +1,11 @@
-""""
-Copyright © Krypton 2021 - https://github.com/kkrypt0nn
-Description:
-This is a template to create your own discord bot in python.
-
-Version: 2.7
-"""
-
 import json
 import os
 import sys
 
 import discord
 from discord.ext import commands
+from discord import Webhook, AsyncWebhookAdapter
+import aiohttp
 
 from helpers import json_manager
 
@@ -175,15 +169,18 @@ class owner(commands.Cog, name="owner"):
             )
             await context.send(embed=embed)
 
-    @commands.command(name="status")
-    async def status(self, context, *, status = None):
+    @commands.command(name="announcement")
+    async def announcement(self, context, channel:discord.TextChannel, title, args):
+        """
+        The bot will say anything you want, but within embeds.
+        """
         if context.message.author.id in config["owners"]:
-            if status:
-                game = discord.Game(status)
-                await self.bot.change_presence(activity = game)
-            else:
-                await self.bot.change_presence(activity = None)
-                await context.send(f"changed status to {game}")
+                embed = discord.Embed(
+                    title=f"{title}",
+                    description=f"{args}"
+                )
+                await channel.send(embed=embed)
+                #await message.publish(previous message) how?!?!?!?
         else:
             embed = discord.Embed(
                 title="Error!",
@@ -191,6 +188,7 @@ class owner(commands.Cog, name="owner"):
                 color=0xE02B2B
             )
             await context.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(owner(bot))

@@ -56,9 +56,9 @@ class general(commands.Cog, name="general"):
         )
         embed.add_field(
             name="Stand Ability",
-            value="The Homunculus Requiem is capable of using the abilities of other stands"
+            value="The Homunculus is capable of using the abilities of other stands"
         )
-        embed.set_image(url="")
+        embed.set_image(url=f"{bot.avatar_url}")
         embed.set_footer(
             text=f"Requested by {context.message.author}"
         )

@@ -60,11 +60,9 @@ async def on_ready():
     #status_task.start()
 
 
-# Setup the game status task of the bot
-#@tasks.loop(minutes=1.0)
-#async def status_task():
-#    global status
-#    await bot.change_presence(activity=discord.Game(status))
+#Setup the game status task of the bot
+async def status_task():
+    await bot.change_presence(activity=discord.Streaming())
 
 
 # Removes the default help command of discord.py to be able to create our custom help command.

@@ -8,7 +8,6 @@ import asyncio
 from discord.ext import commands
 
 
-
 # Here we name the cog and create a new class for the cog.
 class apis(commands.Cog, name="apis"):
     def __init__(self, bot):
@@ -60,7 +59,22 @@ class apis(commands.Cog, name="apis"):
                 color=0x42F56C
             )
             await context.send(embed=embed)
-
+    @commands.command(name="doesnotexist")
+    async def doesnotexist(self, context, args):
+        """
+        this object does not exist
+        """
+        if args == "help":
+            await context.send('valid args are "artwork, person, cat"')
+        else:
+            url = f"https://this{args}doesnotexist.com"
+            embed = discord.Embed(
+                title="",
+                description="",
+                color=0x42F56C
+            )
+            embed.set_image(url=url)
+            await context.send(embed=embed)
     @commands.command(name="QRify")
     async def QRify(self, context, args):
         """
