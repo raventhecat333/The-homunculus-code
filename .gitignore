@@ -56,8 +56,10 @@ disabled\ cogs/
 # Translations
 *.mo
 *.pot
-#config files
+#config files/folders
 config.json
+blacklist.json
+test/
 # Django stuff:
 *.log
 local_settings.py
