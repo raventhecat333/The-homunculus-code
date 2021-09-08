@@ -56,7 +56,7 @@ disabled\ cogs/
 # Translations
 *.mo
 *.pot
-#config
+#config files
 config.json
 # Django stuff:
 *.log

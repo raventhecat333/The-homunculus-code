@@ -75,17 +75,21 @@ class apis(commands.Cog, name="apis"):
             )
             embed.set_image(url=url)
             await context.send(embed=embed)
+
     @commands.command(name="QRify")
-    async def QRify(self, context, args):
+    async def QRify(self, context, url):
         """
         create a qr code based on the string given
         """
         embed = discord.Embed(
-        title=f"QR code for {args}",
+        title=f"QR code for {url}",
             description="",
             color=0x42F56C
         )
-        embed.set_image(url=f"https://www.qrtag.net/api/qr_12.png?url={args}")
+        embed.set_image(url=f"https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={url}")
+        embed.set_footer(
+            text=f"Requested by {context.message.author}"
+        )
         await context.send(embed=embed)
 
     @commands.command(name="waifu")

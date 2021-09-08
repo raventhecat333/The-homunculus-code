@@ -37,8 +37,11 @@ class Fun(commands.Cog, name="fun"):
         mytext = f"{args}"
         language = 'en'
         myobj = gTTS(text=mytext, lang=language, slow=False)
-        myobj.save("output.mp3")
-        await context.send(file=discord.File('output.mp3'))
+        myobj.save(f"output.mp3")
+        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('output.mp3'))
+        ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
+
+        await context.send(file=discord.File(f'{args}.mp3'))
     @commands.command(name="dailyfact")
     @commands.cooldown(1, 86400, BucketType.user)
     async def dailyfact(self, context):
