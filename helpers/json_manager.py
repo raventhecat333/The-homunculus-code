@@ -17,3 +17,11 @@ def remove_user_from_blacklist(user_id: int):
     with open("blacklist.json", "w") as file:
         file.seek(0)
         json.dump(file_data, file, indent=4)
+
+def set_status(status: str):
+    with open("test.json", "r+") as file:
+        file_data = json.load(file)
+        file_data["status"].write(status)
+    with open("test.json", "w") as file:
+        file.seek(0)
+        json.dump(file_data, file, indent=4)

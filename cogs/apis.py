@@ -109,8 +109,10 @@ class apis(commands.Cog, name="apis"):
                     description="",
                     color=0x42F56C
                 )
-                embed.set_image("response['url']")
+                embed.set_image(url=response['url'])
                 await context.send(embed=embed)
+        elif args == "shinobu":
+            context.send("this cat is disabled")
         else:
             url = "https://api.waifu.pics/endpoints"
             # Async HTTP request
