@@ -3,7 +3,6 @@ import os
 import platform
 import random
 import sys
-
 import discord
 from discord.ext import commands, tasks
 from discord.ext.commands import Bot
@@ -61,8 +60,9 @@ async def on_ready():
 
 
 #Setup the game status task of the bot
+@tasks.loop(minutes=0.2)
 async def status_task():
-    await bot.change_presence(activity=discord.Game("with code"))
+    await bot.change_presence(activity=discord.Game("playing with code"))
 
 
 # Removes the default help command of discord.py to be able to create our custom help command.
@@ -133,8 +133,14 @@ async def on_command_error(context, error):
             color=0xE02B2B
         )
         await context.send(embed=embed)
+    elif isinstance(error, commands.CommandNotFound):
+        embed = discord.Embed(
+            title="Error!",
+            description=str(error).capitalize(),
+            color=0xE02B2B
+        )
+        await context.send(embed=embed)
     raise error
-
 
 # Run the bot with the token
 bot.run(config["token"])
