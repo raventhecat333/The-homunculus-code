@@ -14,8 +14,37 @@ class apis(commands.Cog, name="apis"):
         self.bot = bot
 
     # Here you can just add your own commands, you'll always need to provide "self" as first parameter.
-    @commands.command(name="nextmcu")
+    @commands.group(name="nextmcu")
     async def nextmcu(self, context):
+        """
+        idk
+        """
+
+        url = "https://whenisthenextmcufilm.com/api"
+        # Async HTTP request
+        if context.invoked_subcommand is None:
+            async with aiohttp.ClientSession() as session:
+                raw_response = await session.get(url)
+                response = await raw_response.text()
+                response = json.loads(response)
+                embed = discord.Embed(
+                    title=f"The following {response['type']} is:",
+                    description=f"{response['title']}",
+                    color=0x42F56C
+                )
+                embed.add_field(
+                name="Overview",
+                value=f"{response['overview']}"
+                )
+                embed.add_field(
+                name="Days until:",
+                value=f"{response['days_until']} on {response['release_date']}"
+                )
+                embed.set_image(url=response['poster_url'])
+                await context.send(embed=embed)
+
+    @nextmcu.command(name="following")
+    async def nextmcu_following(self, context):
         """
         idk
         """
@@ -26,6 +55,7 @@ class apis(commands.Cog, name="apis"):
             raw_response = await session.get(url)
             response = await raw_response.text()
             response = json.loads(response)
+            response = response['following_production']
             embed = discord.Embed(
                 title=f"Next {response['type']} is:",
                 description=f"{response['title']}",
@@ -37,7 +67,7 @@ class apis(commands.Cog, name="apis"):
             )
             embed.add_field(
             name="Days until:",
-            value=f"{response['days_until']}"
+            value=f"{response['days_until']} on {response['release_date']}"
             )
             embed.set_image(url=response['poster_url'])
             await context.send(embed=embed)
