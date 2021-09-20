@@ -71,6 +71,67 @@ class apis(commands.Cog, name="apis"):
             )
             embed.set_image(url=response['poster_url'])
             await context.send(embed=embed)
+    @commands.command(name="cat")
+    async def cat(self, context):
+        """
+        cat pictures
+        """
+        url = "https://thatcopy.pw/catapi/rest/"
+        # Async HTTP request
+        async with aiohttp.ClientSession() as session:
+            raw_response = await session.get(url)
+            response = await raw_response.text()
+            response = json.loads(response)
+            embed = discord.Embed(
+                title="Cat",
+                description="",
+                color=0x42F56C
+            )
+            embed.set_image(url=f"{response['url']}")
+            await context.send(embed=embed)
+
+    @commands.command(name="quote")
+    async def quote(self, context):
+        """
+        returns a random quote
+        """
+
+        url = "https://animechan.vercel.app/api/random"
+        # Async HTTP request
+        async with aiohttp.ClientSession() as session:
+            raw_response = await session.get(url)
+            response = await raw_response.text()
+            response = json.loads(response)
+            embed = discord.Embed(
+                title=f"{response['character']}",
+                description=f"{response['quote']}",
+                color=0x42F56C
+            )
+            await context.send(embed=embed)
+
+
+    @commands.command(name="character")
+    async def character(self, context, *, args):
+        """
+        returns a random quote from the character
+        """
+        url = f"https://animechan.vercel.app/api/quotes/character?name={args}"
+        # Async HTTP request
+        async with aiohttp.ClientSession() as session:
+            raw_response = await session.get(url)
+            response = await raw_response.text()
+            response = json.loads(response)
+            embed = discord.Embed(
+                title=f"{response['anime']}",
+                description=f"{response['quote']}",
+                color=0x42F56C
+            )
+            embed.add_field(
+                name=f"{response['character']} is from:",
+                value=f"{response['anime']}",
+                color=0x42F56C
+            )
+            await context.send(embed=embed)
 
     @commands.command(name="bitcoin")
     async def bitcoin(self, context):
@@ -89,6 +150,7 @@ class apis(commands.Cog, name="apis"):
                 color=0x42F56C
             )
             await context.send(embed=embed)
+
     @commands.command(name="doesnotexist")
     async def doesnotexist(self, context, args):
         """

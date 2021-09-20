@@ -39,7 +39,7 @@ class owner(commands.Cog, name="owner"):
                 color=0xE02B2B
             )
             await context.send(embed=embed)
-    
+
 
     @commands.command(name="say", aliases=["echo"])
     async def say(self, context, *, args):
